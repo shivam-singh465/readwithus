@@ -3,7 +3,7 @@ import { Aside, BlogCard, Footer, Navbar, SidebarBlogCard  , StripBlogCard} from
 import { BLOG_API_END_POINT } from '../../../utils/constent'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchBlogsStart, fetchBlogsSuccess, fetchBlogsFailure, } from '../../redux/blogSlice'
+import { fetchBlogsStart, fetchBlogsSuccess, fetchBlogsFailure, } from '../../../redux/blogSlice'
 
 
 function Blog() {

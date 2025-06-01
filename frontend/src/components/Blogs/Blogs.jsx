@@ -32,7 +32,7 @@ const Blogs = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center py-10">
+        <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center py-10 my-2">
 
             {/* Latest Blog Posts Section */}
             <section className="py-16 md:py-0  rounded-lg mx-4 md:mx-auto max-w-7xl px-6 lg:px-8">

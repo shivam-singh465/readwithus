@@ -1,13 +1,14 @@
 import express from "express"
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import cookie from "cookie-parser"
 dotenv.config();
 
 const auth = (req, res, next) => {
 
     try {
 
-        const token = req.cookie.token
+        const token = req.cookies.token
         if (!token) {
             res.status(500).json({
                 success: false,
@@ -26,7 +27,7 @@ const auth = (req, res, next) => {
 
         req.id = decode.userId;
         req.user = decode;
-
+        next()
     } catch (error) {
         console.log(error)
         res.status(500).json({

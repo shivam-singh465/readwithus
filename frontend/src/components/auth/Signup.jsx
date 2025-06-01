@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { Navbar } from "../index";
-import  SignupIll  from "../../assets/images/signup.png";
+import SignupIll from "../../assets/images/signup.png";
+import axios from "axios";
+import { USER_API_END_POINT } from "../../../utils/constent";
+import { useNavigate } from "react-router";
 
 const Signup = () => {
+    const navigate = useNavigate()
     const [form, setForm] = useState({
         name: "",
         email: "",
@@ -19,7 +23,7 @@ const Signup = () => {
         setSuccess("");
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (
             !form.name ||
@@ -35,13 +39,35 @@ const Signup = () => {
             return;
         }
         // Handle signup logic here
-        setSuccess("Sign up successful! Welcome to readwithus.");
-        setForm({
-            name: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-        });
+
+        try {
+
+
+            const res = await axios.post(`${USER_API_END_POINT}/register`, form, {
+                headers: {
+                    'Content-Type': 'application/json',
+                }, withCredentials: "true"
+            })
+
+            if (!res) {
+                setError("somthing went wrong")
+                console.log("res is empty")
+            }
+            if (res.data.success === true) {
+                setSuccess("Sign up successful! Welcome to readwithus.");
+                navigate("/login")
+            }
+
+
+            setForm({
+                name: "",
+                email: "",
+                password: "",
+                confirmPassword: "",
+            });
+        } catch (error) {
+            setError(error.response.data.message)
+        }
     };
 
     return (

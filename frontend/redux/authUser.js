@@ -6,23 +6,21 @@ const authSlice = createSlice({
         user: null,
         isLoggedIn: false,
         loading: false,
-
     },
     reducers: {
         logginUser: (state, action) => {
-            state.isLoggedIn = action.payload
-            state.user = action.payload
+            state.user = action.payload;          // user object
+            state.isLoggedIn = true;              // user is logged in
         },
-        logoutUser: (state, action) => {
-            state.isLoggedIn = action.payload
-            state.user = action.payload
+        logoutUser: (state) => {
+            state.user = null;                    // clear user
+            state.isLoggedIn = false;             // set login status
         },
-        isLoading: (state,action) => {
-            state.loading = action.payload
-        }
+        isLoading: (state, action) => {
+            state.loading = action.payload;       // true or false
+        },
+    },
+});
 
-    }
-})
-
-export const {logginUser,logoutUser,isloading} = authSlice.actions
+export const { logginUser, logoutUser, isLoading } = authSlice.actions;
 export const authSliceReducer = authSlice.reducer;

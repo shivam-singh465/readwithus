@@ -1,9 +1,15 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router"; // ✅ correct import
+import { logoutUser } from "../../../redux/authUser";
+import { Cookie } from "lucide-react";
 
 const Navbar = () => {
+    const {isLoggedIn } = useSelector((state)=>state.userReducer)
+    const dispatch = useDispatch()
+    
 
-    const [isLoggedIn, setIsLoggedIn] = useState(true)
+    // const [isLoggedIn, setIsLoggedIn] = useState(true)
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
@@ -19,7 +25,7 @@ const Navbar = () => {
 
                     {/* Desktop Nav */}
                     <div className="hidden md:flex items-center space-x-6">
-                        {isLoggedIn ? (
+                        {isLoggedIn  ? (
                             <>
                                 <Link to="/" className="text-gray-700 hover:text-orange-500">
                                     Home
@@ -37,7 +43,10 @@ const Navbar = () => {
                                     Profile
                                 </Link>
                                 <Link
-                                    to="/logout"
+                                    onClick={()=>{dispatch(logoutUser())
+                                       
+                                    }}
+                                    
                                     className="text-white bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded-md text-sm font-semibold"
                                 >
                                     Logout

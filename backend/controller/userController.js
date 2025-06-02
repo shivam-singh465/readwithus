@@ -136,4 +136,25 @@ const loginUser = async (req, res) => {
     }
 }
 
-export { registerUser, loginUser, getCurrentUser };
+const logoutUser = (req,res)=>{
+    try {
+         res.status(200)
+            .cookie("token", "", { maxAge: 0 })
+            .json({ 
+                success: true, 
+                message: "Logout successful",
+            });
+        
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error",
+            error: error.message,
+        });
+
+    }
+
+
+}
+
+export { registerUser, loginUser, getCurrentUser,logoutUser };

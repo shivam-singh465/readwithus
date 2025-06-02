@@ -1,13 +1,33 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router"; // ✅ correct import
+import { Link, useNavigate } from "react-router"; // ✅ correct import
 import { logoutUser } from "../../../redux/authUser";
 import { Cookie } from "lucide-react";
+import { USER_API_END_POINT } from "../../../utils/constent";
+import axios from "axios";
 
 const Navbar = () => {
-    const {isLoggedIn } = useSelector((state)=>state.userReducer)
+    const navigate = useNavigate()
     const dispatch = useDispatch()
-    
+    const { isLoggedIn } = useSelector((state) => state.userReducer)
+
+
+    const logoutButton = async () => {
+        try {
+            const res = await axios.post(`${USER_API_END_POINT}/logout`, {}, {
+                withCredentials: true, 
+            })
+            if(res.data.success){
+                console.log("if is wrkoing", res)
+                dispatch(logoutUser())
+                navigate("/")
+            }
+                console.log(res.message)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 
     // const [isLoggedIn, setIsLoggedIn] = useState(true)
     const [menuOpen, setMenuOpen] = useState(false);
@@ -25,7 +45,7 @@ const Navbar = () => {
 
                     {/* Desktop Nav */}
                     <div className="hidden md:flex items-center space-x-6">
-                        {isLoggedIn  ? (
+                        {isLoggedIn ? (
                             <>
                                 <Link to="/" className="text-gray-700 hover:text-orange-500">
                                     Home
@@ -43,10 +63,8 @@ const Navbar = () => {
                                     Profile
                                 </Link>
                                 <Link
-                                    onClick={()=>{dispatch(logoutUser())
-                                       
-                                    }}
-                                    
+                                    onClick={logoutButton}
+
                                     className="text-white bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded-md text-sm font-semibold"
                                 >
                                     Logout

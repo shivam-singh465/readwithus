@@ -1,6 +1,6 @@
 import './App.css'
 import React, { useEffect } from "react"
-import { About, Blog, Home, Login, Signup, UserProfile, Contact, BlogReader } from './components/index'
+import { About, Blog, Home, Login, Signup, UserProfile, Contact, BlogReader, BlogWriter } from './components/index'
 import { createBrowserRouter, RouterProvider,  } from 'react-router'
 import { useDispatch } from 'react-redux'
 import { logginUser } from '../redux/authUser'
@@ -71,6 +71,11 @@ function App() {
       path: "/blog/:id",
       element: <BlogReader />,
     },
+    {
+      path: "/writeBlog",
+      element: <BlogWriter />,
+    },
+   
 
   ])
 

@@ -3,7 +3,7 @@ const SidebarBlogCard = ({ title, author, imageUrl, readTime }) => {
     return (
         <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition duration-200 cursor-pointer">
             <img
-                className="w-16 h-16 rounded-md object-cover flex-shrink-0"
+                className="md:w-16 md:h-16 w-8 h-8 rounded-md object-cover flex-shrink-0"
                 src={imageUrl || placeholderImage}
                 alt={title}
                 onError={(e) => { e.target.onerror = null; e.target.src = placeholderImage; }}

@@ -15,5 +15,7 @@ import Contact from "./pages/Contact";
 import BlogReader from "./Blogs/BlogRearder"
 import SidebarBlogCard from "./blogCard/SidebarBlogCard"
 import Aside from "./aside/Aside";
+import BlogWriter from "./pages/BlogWriter"
 
-export { Blog, BlogCard, Home, Navbar, Login, Signup, HeroSection, Footer, About, MainSection, Blogs, StripBlogCard, UserProfile, Contact, BlogReader, SidebarBlogCard ,Aside}
+
+export { Blog, BlogCard, Home, Navbar, Login, Signup, HeroSection, Footer, About, MainSection, Blogs, StripBlogCard, UserProfile, Contact, BlogReader, SidebarBlogCard ,Aside ,BlogWriter }

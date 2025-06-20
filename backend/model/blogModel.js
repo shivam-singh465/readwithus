@@ -5,17 +5,29 @@ const blogSchema = new Schema({
         type: String,
         required: true,
     },
-    content: {
-        type: String,
-        required: true,
-    }, 
-    mainHeading:{
+    mainContent: {
         type: String,
         required: true,
     },
-    writer:{
+
+    tags: {
+        type: Array,
+        required: true,
+    },
+    subheading: {
+        type: Array
+    },
+    author: {
         type: String,
         required: true,
+    },
+    like: {
+        type: Number,
+
+    },
+    comment: {
+        type: String,
+
     },
     createdAt: {
         type: Date,

@@ -2,6 +2,9 @@ import React from 'react';
 import { Navbar, StripBlogCard, Footer } from '../index';
 import { Link } from 'react-router';
 
+
+import { useSelector } from 'react-redux';
+
 // UserBlogCard Component
 // This component displays a single blog post card for the user's profile,
 // showing likes and comments as small buttons.
@@ -41,14 +44,31 @@ import { Link } from 'react-router';
 // Main App component
 function UserProfile() {
     // Dummy data for user information and blog statistics
-    const user = {
-        name: "Jane Doe",
-        email: "jane.doe@example.com",
-        bio: "Passionate writer and tech enthusiast. I love sharing insights on web development and productivity.",
-        profilePicture: "https://placehold.co/150x150/A78BFA/FFFFFF?text=JD", // Placeholder image
-        joinDate: "Joined: January 15, 2023",
-        location: "San Francisco, CA",
-    };
+    // const { user } = useSelector((state) => state.userReducer)
+    const user = JSON.parse(localStorage.getItem("user"))
+    user.profilePicture = `https://placehold.co/150x150/A78BFA/FFFFFF?text=${user.name[0]}`
+    
+    
+    // console.log(user.user)
+
+
+    // const user = {
+    //     name: "Jane Doe",
+    //     email: "jane.doe@example.com",
+    //     bio: "Passionate writer and tech enthusiast. I love sharing insights on web development and productivity.",
+    //     profilePicture: "https://placehold.co/150x150/A78BFA/FFFFFF?text=JD", // Placeholder image
+    //     joinDate: "Joined: January 15, 2023",
+    //     location: "San Francisco, CA",
+    // };
+
+    // {_id: '683178feaf31e68b72ef233e',
+    //  name: 'goku',
+    //  email: 'goku@gmail.com',
+    //  role: 'user',
+    //  createdAt: '2025-05-24T07:45:02.673Z',
+    // }
+
+
 
     // Dummy data for user's uploaded blogs
     const userBlogs = [
@@ -89,6 +109,8 @@ function UserProfile() {
     return (
         <div >
             <Navbar />
+        
+
             <div className="min-h-screen bg-gray-100 flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
                 <div className="rounded-2xl p-8 md:p-10 w-full max-w-4xl">
                     {/* Profile Header Section */}

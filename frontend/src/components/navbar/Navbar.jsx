@@ -21,6 +21,7 @@ const Navbar = () => {
                 console.log("if is wrkoing", res)
                 dispatch(logoutUser())
                 navigate("/")
+                localStorage.clear()
             }
                 console.log(res.message)
         } catch (error) {

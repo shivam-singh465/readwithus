@@ -58,6 +58,7 @@ const registerUser = async (req, res) => {
                 name: newUser.name,
                 email: newUser.email,
                 role: newUser.role,
+                
             },
         });
 
